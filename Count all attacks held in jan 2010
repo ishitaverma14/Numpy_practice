@@ -1,0 +1,23 @@
+Given file "terrorismData.csv"
+It is an open-source database including information on terrorist attacks around the world from 1970 through 2017. This dataset includes systematic data on domestic as well as international terrorist incidents that have occurred during this time period
+Problem Statement :
+Find the number of attack held between 1 Jan 2010 and 31 Jan 2010?(including both date).
+Note Ignore the case where day is 0
+Print count of NumberOFAttack as integer value.
+Output Format :
+count
+
+
+import numpy as np
+import csv
+file=open("terrorismData.csv")
+data=csv.DictReader(file,skipinitialspace=True)
+count=0
+date=[]
+for row in data:
+    date.append([row['Year'],row['Month'],row['Day']])
+npdate=np.array(date,dtype=int)
+npdate=npdate[npdate[:,0]==2010]
+npdate=npdate[npdate[:,1]==1]
+npdate=npdate[npdate[:,2]>=1]
+print(len(npdate))
